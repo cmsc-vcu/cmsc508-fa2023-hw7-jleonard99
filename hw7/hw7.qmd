@@ -1,6 +1,6 @@
 ---
 title: Homework 7 - Creating a resume database
-author: (your name goes here!)
+author: John Leonard
 date: last-modified
 format:
     html:
@@ -10,9 +10,7 @@ format:
         code-copy: true
 ---
 
-(include a brief description of what is in this document)
-
-(Please clean up any comments that I included.  This is a scaffold document.)
+homework 7 
 
 ```{python}
 #| eval: true
@@ -90,24 +88,19 @@ except Exception as e:
 
 ## Overview and description
 
-(briefly describe the project and the database)
+project overview
 
 ## Crows-foot diagram
 
-(add a description of the diagram and what the reader is seeing.)
+crows foot diagram.
 
 ```{mermaid}
 %%| echo: false
 erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
     CUSTOMER{
         int id
         string first_name
         string last_name
-    }
-    DELIVERY-ADDRESS {
-        int id
     }
 ```
 

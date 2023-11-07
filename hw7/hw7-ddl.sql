@@ -96,6 +96,10 @@ create table peopleskills (
 # Person 9 has skills 2,5,6;
 # Person 10 has skills 1,4,5;
 # Note that no one has yet acquired skills 7 and 8.
+
+insert into peopleskills (skills_id,people_id) values
+  (1,1),
+  (2,1);
  
 
 # Section 8
@@ -156,4 +160,7 @@ select * from peopleroles;
 
 insert into peopleroles (people_id,role_id) values
   (1,1);
+
+
+select * from roles;
 
