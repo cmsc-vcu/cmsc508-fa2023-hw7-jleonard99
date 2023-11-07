@@ -16,10 +16,14 @@
 # Section 1
 # Drops all tables.  This section should be amended as new tables are added.
 
-SET FOREIGN_KEY_CHECKS=0;
+#SET FOREIGN_KEY_CHECKS=0;
+drop table if exists peopleroles;
+drop table if exists peopleskills;
 DROP TABLE IF EXISTS people;
+drop table if exists skills;
+drop table if exists roles;
 # ... 
-SET FOREIGN_KEY_CHECKS=1;
+#SET FOREIGN_KEY_CHECKS=1;
 
 # Section 2
 # Create skills( id,name, description, tag, url, time_commitment)
@@ -28,11 +32,19 @@ SET FOREIGN_KEY_CHECKS=1;
 # time committment offers some sense of how much time was required (or will be required) to gain the skill.
 # You can assign the skill descriptions.  Please be creative!
 
+create table skills (
+    id int,
+    primary key(id)
+);
 
 # Section 3
 # Populate skills
 # Populates the skills table with eight skills, their tag fields must exactly contain “Skill 1”, “Skill 2”, etc.
 # You can assign skill names.  Please be creative!
+
+insert into skills (id) values
+  (1),
+  (2);
 
 
 # Section 4
@@ -51,13 +63,23 @@ CREATE TABLE people (
 # Their last names must exactly be “Person 1”, “Person 2”, etc.
 # Other fields are for you to assign.
 
-insert into people (people_id,people_last_name) values (1,'Person 1');
+insert into people (people_id,people_last_name) values
+  (1,'Person 1');
 
 
 # Section 6
 # Create peopleskills( id, skills_id, people_id, date_acquired )
 # None of the fields can ba NULL. ID can be auto_increment.
 
+create table peopleskills (
+    id int auto_increment,
+    skills_id int,
+    people_id int,
+    date_acquired date default (current_date),
+    primary key (id),
+    foreign key (skills_id) references skills (id),
+    foreign key (people_id) references people (people_id)
+);
 
 # Section 7
 # Populate peopleskills such that:
@@ -78,6 +100,11 @@ insert into people (people_id,people_last_name) values (1,'Person 1');
 # Create roles( id, name, sort_priority )
 # sort_priority is an integer and is used to provide an order for sorting roles
 
+create table roles (
+    id int,
+    primary key(id)
+);
+
 
 
 # Section 9
@@ -85,12 +112,28 @@ insert into people (people_id,people_last_name) values (1,'Person 1');
 # Designer, Developer, Recruit, Team Lead, Boss, Mentor
 # Sort priority is assigned numerically in the order listed above (Designer=10, Developer=20, Recruit=30, etc.)
 
-
+insert into roles (id) values 
+  (1),
+  (2),
+  (3),
+  (4),
+  (5),
+  (6);
 
 # Section 10
 # Create peopleroles( id, people_id, role_id, date_assigned )
 # None of the fields can be null.  ID can be auto_increment
 
+drop table if exists peopleroles;
+create table peopleroles (
+    id int auto_increment,
+    people_id int,
+    role_id int,
+    date_assigned date default (current_date),
+    primary key(id),
+    foreign key (people_id) references people (people_id),
+    foreign key (role_id) references roles (id )
+);
 
 
 # Section 11
@@ -105,4 +148,7 @@ insert into people (people_id,people_last_name) values (1,'Person 1');
 # Person 8 is Designer and Team Lead
 # Person 9 is Developer
 # Person 10 is Developer and Designer
+
+insert into peopleroles (people_id,role_id) values
+  (1,1);
 
