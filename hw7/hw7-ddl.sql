@@ -16,6 +16,8 @@
 # Section 1
 # Drops all tables.  This section should be amended as new tables are added.
 
+SET AUTOCOMMIT=1;
+
 #SET FOREIGN_KEY_CHECKS=0;
 drop table if exists peopleroles;
 drop table if exists peopleskills;
@@ -59,7 +61,7 @@ CREATE TABLE people (
 );
 
 # Section 5
-# Populate people with six people.
+# Populate people with 10 people.
 # Their last names must exactly be “Person 1”, “Person 2”, etc.
 # Other fields are for you to assign.
 
@@ -134,6 +136,9 @@ create table peopleroles (
     foreign key (people_id) references people (people_id),
     foreign key (role_id) references roles (id )
 );
+
+
+select * from peopleroles;
 
 
 # Section 11
